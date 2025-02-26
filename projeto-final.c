@@ -32,7 +32,6 @@ PIO pio;
 uint sm;
 ssd1306_t ssd; // Inicializa a estrutura do display
 bool cor = true;
-volatile absolute_time_t last_press_time = 0;
 
 // Protótipo das funções
 void setup_all();
@@ -45,8 +44,6 @@ int main()
     stdio_init_all();
     setup_all();
 
-    // gpio_set_irq_enabled_with_callback(JOYSTICK_SW, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler);
-
     while (true)
     {
         adc_select_input(0);
@@ -56,21 +53,17 @@ int main()
         x = clamp(x, 0, 300);
         printf("%d\n", x);
 
-        if (x < 30)
-        {
-            alert = 3; // 🚨 Nível Crítico
+        if (x < 30){
+            alert = 3; // Nível Crítico
         }
-        else if (x < 50)
-        {
-            alert = 2; // 🔴 Nível Alto
+        else if (x < 50){
+            alert = 2; // Nível Alto
         }
-        else if (x < 80)
-        {
-            alert = 1; // 🟠 Nível Médio
+        else if (x < 80){
+            alert = 1; // Nível Médio
         }
-        else
-        {
-            alert = 0; // ✅ Sem alerta
+        else {
+            alert = 0; // Sem alerta
         }
 
         beep_alerta(alert);
@@ -79,13 +72,13 @@ int main()
         {
             gpio_put(LED_GREEN, true);
             gpio_put(LED_RED, false);
-            atualizar_display(x, "CAMINHO", "LIVRE"); // Passa a string corretamente
+            atualizar_display(x, "CAMINHO", "LIVRE");
         }
         else
         {
             gpio_put(LED_RED, true);
             gpio_put(LED_GREEN, false);
-            atualizar_display(x, "OBSTACULO", "DETECTADO"); // Passa a string corretamente
+            atualizar_display(x, "OBSTACULO", "DETECTADO"); 
         }
 
         sleep_ms(10);
@@ -144,25 +137,25 @@ void beep_alerta(int nivel)
 
     switch (nivel)
     {
-    case 3: // 🚨 Nível Crítico (Muito Perto)
+    case 3: // Nível Crítico (Muito Perto)
         frequencia = 4000;
         beeps = 3;
         duracao = 50;
         intervalo = 20;
         break;
-    case 2: // 🔴 Nível Alto
+    case 2: // Nível Alto
         frequencia = 2000;
         beeps = 1;
         duracao = 50;
         intervalo = 75;
         break;
-    case 1: // 🟠 Nível Médio
+    case 1: // Nível Médio
         frequencia = 1000;
         beeps = 1;
         duracao = 100;
         intervalo = 100;
         break;
-    default: // ✅ Sem alerta
+    default: // Sem alerta
         return;
     }
 
