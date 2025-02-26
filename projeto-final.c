@@ -186,5 +186,6 @@ void atualizar_display(int valor, const char *linha2, const char *linha3)
 
     ssd1306_send_data(&ssd);
 
-
+    ssd1306_fill(&ssd, !cor);
+    ssd1306_send_data(&ssd);
 }

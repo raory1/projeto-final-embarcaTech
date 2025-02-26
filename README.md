@@ -24,5 +24,5 @@ Este é o projeto de uma solução tecnológica que tem como objetivo principal 
 - Verificação da correta ativação dos alertas sonoros e visuais.
 - Validação da exibição das mensagens no display OLED.
 
-## Vídeo de apresentação
-[a inserir]
+## Apresentação
+[assista aqui](https://youtu.be/Sz2PDzh43dw)
