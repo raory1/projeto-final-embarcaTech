@@ -25,7 +25,7 @@
 
 #define STEP 10
 
-int x = 100;
+int x = 200;
 int alert = 0;
 
 PIO pio;
@@ -53,13 +53,13 @@ int main()
         x = clamp(x, 0, 300);
         printf("%d\n", x);
 
-        if (x < 30){
+        if (x < 50){
             alert = 3; // Nível Crítico
         }
-        else if (x < 50){
+        else if (x < 100){
             alert = 2; // Nível Alto
         }
-        else if (x < 80){
+        else if (x < 150){
             alert = 1; // Nível Médio
         }
         else {
@@ -186,6 +186,5 @@ void atualizar_display(int valor, const char *linha2, const char *linha3)
 
     ssd1306_send_data(&ssd);
 
-    ssd1306_fill(&ssd, !cor);
-    ssd1306_send_data(&ssd);
+
 }
